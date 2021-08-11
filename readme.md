@@ -1,22 +1,21 @@
-=====================================
 an example currency conversion api
-=====================================
+==================================
 
 gets rate information from:
 https://freecurrencyapi.net/
 
 
 Setup
-=====
+-----
 
 Assuming you have a working Docker installation, you should be able to just run:
 
-docker-compose up
+`docker-compose up`
 
 to start the app. It should be accessible on port 5000 of your docker machine's IP address.
 
-features
-========
+endpoints
+---------
 
 - `/rate` a GET endpoint to get a currency rate
     - Returns the conversion rate from `from` to `to` as a floating point number.
