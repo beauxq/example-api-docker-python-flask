@@ -1,4 +1,4 @@
-from typing import Dict, Tuple, Union
+from typing import Dict, Tuple, TypedDict, Union
 from requests import get
 from time import time
 from flask import Flask, jsonify, Response, request, make_response, Request
@@ -81,7 +81,16 @@ def test_name(name: str) -> Response:
     return jsonify({'message': 'test successful for {}'.format(name)})
 
 
-def get_rate(request: Request) -> Tuple[float, Union[Response, Dict[str, Union[str, float]]]]:
+CurrencyJsonifiable = TypedDict('CurrencyJsonifiable', {
+    "from": str,
+    "to": str,
+    "rate": float,
+    "amount": float,
+    "converted": float
+}, total=False)
+# TODO: in Python 3.10, remove total=False and use `NotRequired` on amount and converted
+
+def get_rate(request: Request) -> Tuple[float, Union[Response, CurrencyJsonifiable]]:
     """
     returns the rate and a dictionary that can be jsonified to a response
 
